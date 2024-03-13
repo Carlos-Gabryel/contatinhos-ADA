@@ -1,4 +1,5 @@
 import Login from "./pages/Login";
+import { Button } from "@/components/ui/button"
 
 export default function App() {
   return (
@@ -7,6 +8,7 @@ export default function App() {
       Hello world!
     </h1>
     <Login/>
+    <Button>Click me</Button>
     </div>
   )
 }

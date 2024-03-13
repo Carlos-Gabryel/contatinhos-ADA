@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button"
+
 const Login = () => {
   return (
     <section className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
@@ -35,13 +37,9 @@ const Login = () => {
             </a>
           </div>
         </div>
-        <div className="text-center md:text-left">
-          <button
-            className="mt-4 bg-blue-600 hover:bg-blue-700 px-9 py-2 text-white uppercase rounded text-xs tracking-wider"
-            type="submit"
-          >
-            Acessar
-          </button>
+        <div className="text-center md:text-left">      
+          <Button className="mt-4 bg-blue-600 hover:bg-blue-700 px-9 py-2 text-white uppercase rounded text-xs tracking-wider"
+            type="submit">Acessar</Button>
         </div>        
       </div>
     </section>

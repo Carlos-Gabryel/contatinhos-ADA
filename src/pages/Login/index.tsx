@@ -11,12 +11,12 @@ const Login = () => {
         <input
           className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded"
           type="text"
-          placeholder="Email Address"
+          placeholder="Email"
         />
         <input
           className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-4"
           type="password"
-          placeholder="Password"
+          placeholder="Senha"
         />
         <div className="mt-4 flex justify-between font-semibold text-sm">
           <div className="mt-4 font-semibold text-sm text-slate-500 text-center md:text-left">

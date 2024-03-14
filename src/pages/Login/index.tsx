@@ -1,16 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { useFormik } from 'formik';
-import { validationSchema, initialValues } from './form-schema/';
+import { useFormik } from "formik";
+import { validationSchema, initialValues } from "./form-schema/";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const { handleSubmit, handleChange, handleBlur, errors, touched, values } = useFormik({
-    initialValues, 
-    validationSchema, 
-    onSubmit: (formData) => {
-      console.log('Form data:', formData);
-    },
-  });
+  const { handleSubmit, handleChange, handleBlur, errors, touched, values } =
+    useFormik({
+      initialValues,
+      validationSchema,
+      onSubmit: (formData) => {
+        console.log("Form data:", formData);
+      },
+    });
 
   return (
     <>
@@ -31,9 +32,10 @@ const Login = () => {
             onChange={handleChange} // Use handleChange for formik updates
             onBlur={handleBlur} // Use handleBlur for formik validation
           />
-          {errors.email && touched.email && ( // Display error message conditionally
-            <p className="text-red-500 text-xs">{errors.email}</p>
-          )}
+          {errors.email &&
+            touched.email && ( // Display error message conditionally
+              <p className="text-red-500 text-xs">{errors.email}</p>
+            )}
 
           <input
             className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-4"
@@ -44,9 +46,10 @@ const Login = () => {
             onChange={handleChange} // Use handleChange for formik updates
             onBlur={handleBlur} // Use handleBlur for formik validation
           />
-          {errors.password && touched.password && ( // Display error message conditionally
-            <p className="text-red-500 text-xs">{errors.password}</p>
-          )}
+          {errors.password &&
+            touched.password && ( // Display error message conditionally
+              <p className="text-red-500 text-xs">{errors.password}</p>
+            )}
 
           <div className="mt-4 flex justify-between font-semibold text-sm">
             <div className="mt-4 font-semibold text-sm text-slate-500 text-center md:text-left">
@@ -57,13 +60,19 @@ const Login = () => {
             </div>
             <div className="mt-4 font-semibold text-sm text-slate-500 text-center md:text-left">
               <span className="p-1">Não tem uma conta?</span>
-             
-              <Link className="text-blue-600 hover:text-blue-700 hover:underline hover:underline-offset-4" to="../Register/index.tsx">Cadastre-se</Link>
-
+              <Link
+                className="text-blue-600 hover:text-blue-700 hover:underline hover:underline-offset-4"
+                to="../Register/index.tsx"
+              >
+                Cadastre-se
+              </Link>
             </div>
           </div>
           <div className="text-center md:text-left">
-            <Button className="mt-4 bg-blue-600 hover:bg-blue-700 px-9 py-2 text-white uppercase rounded text-xs tracking-wider" type="submit">
+            <Button
+              className="mt-4 bg-blue-600 hover:bg-blue-700 px-9 py-2 text-white uppercase rounded text-xs tracking-wider"
+              type="submit"
+            >
               Acessar
             </Button>
           </div>

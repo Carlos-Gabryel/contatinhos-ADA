@@ -1,10 +1,11 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { FC } from "react";
 
 interface CardContactProp {
-  name: string
-  tel: string
-  photo?: string
-  role?: string
+  name: string;
+  tel: string;
+  photo?: string;
+  role?: string;
 }
 
 const CardContato: FC<CardContactProp> = (props) => {

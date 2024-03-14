@@ -1,30 +1,45 @@
 import { Button } from "@/components/ui/button";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
+import * as Yup from "yup";
 
 const Register = () => {
-  const { handleSubmit, handleChange, handleBlur, values } = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    },
-    onSubmit: (FormData) => {
-      console.log("form data:", FormData);
-    },
-  });
+  const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
+    useFormik({
+      initialValues: {
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      },
+
+      validationSchema: Yup.object().shape({
+        name: Yup.string().required("Digite seu nome"),
+
+        email: Yup.string()
+          .email("Digite um email válido")
+          .required("Digite seu E-mail"),
+
+        password: Yup.string().required("Digite sua senha"),
+
+        confirmPassword: Yup.string()
+          .oneOf([Yup.ref("password")], "As senhas devem coincidir")
+          .required("Confirme sua senha"),
+      }),
+
+      onSubmit: (FormData) => {
+        console.log("form data:", FormData);
+      },
+    });
   return (
     <section className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
       <div className="md:w-1/3 max-w-sm">
-        <img
-          src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-          alt="Sample image"
-        />
+        <img src="/src/assets/logo.png" alt="Sample image" />
       </div>
       <form className="md:w-1/3 max-w-sm" onSubmit={handleSubmit}>
-
-        <h2 className="mb-5 text-center text-4xl text-blue-700">Faça seu cadastro</h2>
+        <h2 className="mb-5 text-center text-4xl text-purple-500">
+          Faça seu cadastro
+        </h2>
 
         <input
           type="text"
@@ -35,7 +50,10 @@ const Register = () => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-
+        {errors.name && touched.name && (
+          <div className="text-red-500">{errors.name}</div>
+        )}
+       
         <input
           type="password"
           className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-4"
@@ -45,7 +63,9 @@ const Register = () => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-
+        {errors.password && touched.password && (
+          <div className="text-red-500">{errors.password}</div>
+        )}
         <input
           type="password"
           className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-4"
@@ -55,7 +75,9 @@ const Register = () => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-
+        {errors.confirmPassword && touched.confirmPassword && (
+          <div className="text-red-500">{errors.confirmPassword}</div>
+        )}
         <input
           type="email"
           className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-4"
@@ -65,14 +87,17 @@ const Register = () => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
+        {errors.email && touched.email && (
+          <div className="text-red-500">{errors.email}</div>
+        )}
+        <div className="mt-4">
+          Já possui cadastro?
+          <Link className="text-purple-500 hover:text-orange-600 hover:underline hover:underline-offset-4" to="/" >Faça Login</Link>
+        </div>
 
-      <div className="mt-4">
-         Já possui cadastro?<Link className="text-blue-600 hover:text-blue-700 hover:underline hover:underline-offset-4" to="/"> Faça Login </Link>
-      </div>
-      
         <div>
           <Button
-            className="mt-4 bg-blue-600 hover:bg-blue-700 px-9 py-2 text-white uppercase rounded text-xs tracking-wider"
+            className="mt-4 bg-purple-500 hover:bg-orange-500 px-9 py-2 text-white uppercase rounded text-xs tracking-wider"
             type="submit"
           >
             Cadastrar

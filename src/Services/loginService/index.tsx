@@ -8,8 +8,13 @@ export const useLoginService = () => {
   const loginService = async (
     login: Login
   ): Promise<LoginResponseSuccess & ErrorResponse> => {
-    const response = await post<Login>("http://localhost:5000/v1/auth", login);
-    return response.data;
+    try {
+      const response = await post<Login>("http://localhost:5000/v1/auth", login);
+      return response.data as LoginResponseSuccess & ErrorResponse;
+    } catch (error) {
+      console.error("Erro ao fazer login:", error);
+      throw error; 
+    }
   };
 
   return {

@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { PATHS } from "../../Routers/paths";
+import { FC } from "react";
 
-const Register = () => {
+const Register: FC = () => {
+  const navigate = useNavigate();
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
@@ -14,13 +17,19 @@ const Register = () => {
       },
 
       validationSchema: Yup.object().shape({
-        name: Yup.string().required("Digite seu nome"),
+        name: Yup.string()
+          .min(5, "Usuario deve conter pelo menos 5 caracteres")
+          .required("Digite seu nome"),
 
         email: Yup.string()
           .email("Digite um email válido")
           .required("Digite seu E-mail"),
 
-        password: Yup.string().required("Digite sua senha"),
+        password: Yup.string()
+          .min(6, "A senha deve ter pelo menos 6 caracteres")
+          .matches(/[0-9]/, "A senha deve conter pelo menos um número")
+          .matches(/[a-zA-Z]/, "A senha deve conter pelo menos uma letra")
+          .required("A senha é obrigatória"),
 
         confirmPassword: Yup.string()
           .oneOf([Yup.ref("password")], "As senhas devem coincidir")
@@ -29,6 +38,7 @@ const Register = () => {
 
       onSubmit: (FormData) => {
         console.log("form data:", FormData);
+        navigate(PATHS.login);
       },
     });
   return (
@@ -53,7 +63,7 @@ const Register = () => {
         {errors.name && touched.name && (
           <div className="text-red-500">{errors.name}</div>
         )}
-       
+
         <input
           type="password"
           className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-4"
@@ -92,15 +102,20 @@ const Register = () => {
         )}
         <div className="mt-4">
           Já possui cadastro?
-          <Link className="text-purple-500 hover:text-orange-600 hover:underline hover:underline-offset-4" to="/" >Faça Login</Link>
+          <Link
+            className="text-purple-500 hover:text-orange-600 hover:underline hover:underline-offset-4"
+            to="/"
+          >
+            Faça Login
+          </Link>
         </div>
 
         <div>
           <Button
-            className="mt-4 bg-purple-500 hover:bg-orange-500 px-9 py-2 text-white uppercase rounded text-xs tracking-wider"
             type="submit"
+            className="mt-4 bg-purple-500 hover:bg-orange-500 px-9 py-2 text-white uppercase rounded text-xs tracking-wider"
           >
-            Cadastrar
+            Cadastrar          
           </Button>
         </div>
       </form>

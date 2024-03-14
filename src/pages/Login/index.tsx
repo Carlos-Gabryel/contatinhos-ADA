@@ -2,13 +2,21 @@ import { Button } from "@/components/ui/button";
 import { useFormik } from 'formik';
 import { validationSchema, initialValues } from './form-schema/';
 import { Link } from "react-router-dom";
+import { useLoginService } from "@/Services/loginService";
 
 const Login = () => {
+  const { loginService } = useLoginService();
+
   const { handleSubmit, handleChange, handleBlur, errors, touched, values } = useFormik({
     initialValues, 
     validationSchema, 
-    onSubmit: (formData) => {
-      console.log('Form data:', formData);
+    onSubmit: async (formData) => { 
+      const { email, password: senha } = formData;
+      try {
+        await loginService({ email, senha });
+      } catch (error) {
+        console.error("Erro ao fazer login:", error);      
+      }
     },
   });
 

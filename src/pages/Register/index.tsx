@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { PATHS } from "../../Routers/paths";
 import { FC } from "react";
+import { userRegister } from "@/Services/registerService";
 
 const Register: FC = () => {
   const navigate = useNavigate();
@@ -36,9 +37,14 @@ const Register: FC = () => {
           .required("Confirme sua senha"),
       }),
 
-      onSubmit: (FormData) => {
-        console.log("form data:", FormData);
-        navigate(PATHS.login);
+      onSubmit: async (FormData) => {
+        const { email, password: senha, name: nome } = FormData;
+        try {
+          await userRegister({email, senha, nome});
+          navigate(PATHS.login);
+        } catch (error) {
+          console.error("Erro ao registrar:", error);
+        }
       },
     });
   return (
@@ -99,7 +105,7 @@ const Register: FC = () => {
         />
         {errors.email && touched.email && (
           <div className="text-red-500">{errors.email}</div>
-        )}
+        )}       
         <div className="mt-4">
           Já possui cadastro?
           <Link

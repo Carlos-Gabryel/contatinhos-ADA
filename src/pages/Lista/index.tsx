@@ -2,6 +2,18 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { CardContato } from "@/components/CardContato"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+} from "@/components/ui/dialog"
+import { Label } from "@/components/ui/label"
+
+
 
 const Lista = () => {
   
@@ -11,7 +23,47 @@ const Lista = () => {
         <header className="flex items-center justify-around border-b-2 h-24">
           <img src="/Logo-contatinhos.png" className="w-32"/>
           <Input type="text" placeholder="Buscar" className="w-auto"/>
-          <Button className="bg-orange-600 text-xs">Adicionar contato</Button>
+          <Dialog>
+            <DialogTrigger className="bg-orange-600 hover:bg-purple-700 text-white text-sm p-3 rounded">Adicionar Contato</DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Adicionar contato</DialogTitle>
+                <DialogDescription>
+                  Adicione aqui os dados dos seus contatinhos
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="name" className="text-right">
+                    Name
+                  </Label>
+                  <Input id="name" value="" className="col-span-3" />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="role" className="text-right">
+                    Profissão
+                  </Label>
+                  <Input id="role" value="" className="col-span-3" />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="tel" className="text-right">
+                    Telefone
+                  </Label>
+                  <Input id="tel" value="" className="col-span-3" />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="birth" className="text-right">
+                    Aniversário
+                  </Label>
+                  <Input id="birth" type="date" value="" className="col-span-3" />
+                </div>
+              </div>
+              <DialogFooter>
+                <Button className="bg-orange-600 hover:bg-purple-700" type="submit">Salvar</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+
           <div className="flex items-center	">
             <p className="mr-2 text-violet-500">Thomas</p>
             <Avatar >

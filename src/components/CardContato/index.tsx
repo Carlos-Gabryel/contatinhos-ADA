@@ -20,7 +20,7 @@ const CardContato: FC<CardContactProp> = ({id, name, tel, photo, role, onDelete}
   }
 
   return (
-    <button className="flex justify-start border border-slate-300 p-2 rounded bg-violet-50 hover:bg-violet-100 w-96 m-1">
+    <button className="flex justify-start border border-slate-300 p-2 rounded bg-violet-50 hover:bg-violet-100 w-80 m-1">
       <Avatar className="flex m-1">
         <AvatarImage src={photo} />
         <AvatarFallback>CN</AvatarFallback>

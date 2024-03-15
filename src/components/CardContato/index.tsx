@@ -30,8 +30,13 @@ const CardContato: FC<CardContactProp> = ({id, name, tel, photo, role, onDelete}
         <p className=" text-gray-400 text-xs">{role}</p>
         <p>{tel}</p>
       </div>
-      <button onClick={handleDelete}>Deletar</button>
+      <button  
+      className="bg-red-100 mt-5 ml-14 "  
+       onClick={handleDelete}
+       >Deletar
+       </button>
     </button>
+
   );
 }
 

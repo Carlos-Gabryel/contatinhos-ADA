@@ -1,5 +1,5 @@
 import { Login } from "../../typagem";
-import { useService } from "@/utils/useService";
+import { useService } from "../../utils";
 import { ErrorResponse, LoginResponseSuccess } from "./types/response";
 
 export const useLoginService = () => {

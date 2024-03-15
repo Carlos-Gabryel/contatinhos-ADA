@@ -13,9 +13,9 @@ const Login = () => {
     initialValues, 
     validationSchema, 
     onSubmit: async (formData) => { 
-      const { email, password: senha } = formData;
+      const { email, password } = formData;
       try {
-        await loginService({ email, senha });
+        await loginService({ email, senha: password });
         navigate(PATHS.contato);
       } catch (error) {
         console.error("Erro ao fazer login:", error);      

@@ -1,7 +1,8 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { CardContato } from "@/components/CardContato"
+import { useState } from 'react';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatares/avatar";
+import { Input } from "@/components/ui/input/input";
+import { Button } from "@/components/ui/button";
+import { CardContato } from "@/components/CardContato";
 import {
   Dialog,
   DialogContent,
@@ -10,13 +11,22 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogFooter,
-} from "@/components/ui/dialog"
-import { Label } from "@/components/ui/label"
-
-
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 
 const Lista = () => {
-  
+  const [contatos, setContatos] = useState([
+    { id: '1', name: 'Dayana Mariano', tel: '(99)99999999', role: 'Desenvolvedor(a) de Software', photo: 'https://avatars.githubusercontent.com/u/81884987?v=4' },
+    { id: '2', name: 'Gabryel Machado', tel: '(99)99999999', role: 'Desenvolvedor(a) de Software', photo: 'https://avatars.githubusercontent.com/u/5809009?v=4' },
+    { id: '3', name: 'Juliana Mesquita', tel: '(99)99999999', role: 'Desenvolvedor(a) de Software', photo: 'https://avatars.githubusercontent.com/u/60270373?v=4' },
+    { id: '4', name: 'Rodrigo contantino', tel: '(99)99999999', role: 'Desenvolvedor(a) de Software', photo: 'https://avatars.githubusercontent.com/u/137124681?v=4' }
+  ]);
+
+  const deleteContact = (id: string) => {
+    setContatos(contatos.filter(contato => contato.id !== id));
+   
+  };
+
   return (
     <div className="min-h-dvh flex flex-col justify-between text-gray-500">
       <div>
@@ -74,11 +84,17 @@ const Lista = () => {
         </header>
         <main className="flex mx-14 flex-col">
           <h2 className="flex justify-center text-2xl m-2">Contatos</h2>
-          <CardContato name="Dayana Mariano" tel="(99)99999999" role="Desenvolvedor(a) de Software" photo="https://avatars.githubusercontent.com/u/81884987?v=4" />
-          <CardContato name="Gabryel Machado" tel="(99)99999999" role="Desenvolvedor(a) de Software" photo="https://avatars.githubusercontent.com/u/5809009?v=4"/>
-          <CardContato name="Juliana Mesquita" tel="(99)99999999"  role="Desenvolvedor(a) de Software" photo="https://avatars.githubusercontent.com/u/60270373?v=4"/>
-          <CardContato name="Rodrigo contantino" tel="(99)99999999" role="Desenvolvedor(a) de Software" photo="https://avatars.githubusercontent.com/u/137124681?v=4"/>
-
+          {contatos.map(contato => (
+            <CardContato
+              key={contato.id}
+              id={contato.id}
+              name={contato.name}
+              tel={contato.tel}
+              role={contato.role}
+              photo={contato.photo}
+              onDelete={deleteContact}
+            />
+          ))}
         </main>
       </div>
       <footer className="flex justify-between m-2 text-xs	">
@@ -99,4 +115,4 @@ const Lista = () => {
   )
 }
 
-export default Lista
+export default Lista;

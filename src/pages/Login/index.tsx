@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { useFormik } from 'formik';
 import { validationSchema, initialValues } from './form-schema/';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { PATHS } from "../../Routers/paths";
 import { useLoginService } from "@/Services/loginService";
 
 const Login = () => {
   const { loginService } = useLoginService();
+  const navigate = useNavigate();
 
   const { handleSubmit, handleChange, handleBlur, errors, touched, values } = useFormik({
     initialValues, 
@@ -14,6 +16,7 @@ const Login = () => {
       const { email, password: senha } = formData;
       try {
         await loginService({ email, senha });
+        navigate(PATHS.contato);
       } catch (error) {
         console.error("Erro ao fazer login:", error);      
       }

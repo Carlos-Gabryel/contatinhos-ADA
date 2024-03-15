@@ -31,7 +31,7 @@ const CardContato: FC<CardContactProp> = ({id, name, tel, photo, role, onDelete}
         <p>{tel}</p>
       </div>
       <button  
-      className="bg-red-100 mt-5 ml-14 "  
+      className="bg-red-100 mt-5 ml-14 p-1 hover:bg-orange-200 text-xs rounded "  
        onClick={handleDelete}
        >Deletar
        </button>

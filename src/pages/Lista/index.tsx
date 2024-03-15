@@ -76,7 +76,12 @@ const Lista = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
 
-          <Dialog>
+          
+        </header>
+        <main className="flex mx-14 flex-col">
+          <div className="flex justify-evenly m-2">
+            <h2 className="flex justify-center text-2xl m-2">Contatos</h2>
+            <Dialog>
             <DialogTrigger className="bg-orange-600 hover:bg-purple-700 text-white text-sm p-3 rounded">
               Adicionar Contato
             </DialogTrigger>
@@ -176,9 +181,8 @@ const Lista = () => {
               </DialogFooter>
             </DialogContent>
           </Dialog>
-        </header>
-        <main className="flex mx-14 flex-col">
-          <h2 className="flex justify-center text-2xl m-2">Contatos</h2>
+          </div>
+
           {filteredContacts.map((contato) => (
             <CardContato
               key={contato.id}

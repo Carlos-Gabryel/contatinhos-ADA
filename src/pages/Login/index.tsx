@@ -4,6 +4,13 @@ import { validationSchema, initialValues } from './form-schema/';
 import { Link, useNavigate } from "react-router-dom";
 import { PATHS } from "../../Routers/paths";
 import { useLoginService } from "@/Services/loginService";
+interface LoginResponse {
+  id: string;
+  email: string;
+  nome: string;
+  foto: string;
+  token: string;
+}
 
 const Login = () => {
   const { loginService } = useLoginService();
@@ -15,7 +22,10 @@ const Login = () => {
     onSubmit: async (formData) => { 
       const { email, password: senha } = formData;
       try {
-        await loginService({ email, senha });
+        const response = await loginService({ email, senha });
+        const loginResponse = response as LoginResponse;
+        const { token } = loginResponse;
+        sessionStorage.setItem('token', token);
         navigate(PATHS.contato);
       } catch (error) {
         console.error("Erro ao fazer login:", error);      

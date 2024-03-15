@@ -24,8 +24,8 @@ const Login = () => {
       const { email, password: senha} = formData;
       try {
         const response = await loginService({ email, senha });
-        const loginResponse = response as LoginResponse;
-        const { token } = loginResponse;
+        console.log("Responde: ",response)
+        const { token } = response.data;
         sessionStorage.setItem('token', token);
         navigate(PATHS.contato);
       } catch (error) {

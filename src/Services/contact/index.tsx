@@ -17,7 +17,7 @@ export const useContactService = () => {
   const postContactService = async (contact: Contact) => {
     const response = await post<Contact>(
       "http://localhost:5000/v1/contact",
-      contact
+      contact,
     );
     return response.data;
   };

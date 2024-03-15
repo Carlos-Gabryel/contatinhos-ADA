@@ -25,12 +25,12 @@ export type User = {
     id?: string;
     idUsuario?: string;
     nome: string;
-    apelido: string;
-    email: string;
-    notas: string;
-    foto: string;
-    telefones: Phone[];
-    endereco: Address;
+    apelido?: string;
+    email?: string;
+    notas?: string;
+    foto?: string;
+    telefones?: Phone[];
+    endereco?: Address;
   };
   
   export type Login = {

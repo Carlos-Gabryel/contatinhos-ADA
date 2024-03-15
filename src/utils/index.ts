@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const useService = () => {
+export const useService = () => {
   const instance = axios.create();
 
   instance.interceptors.request.use((config) => {
@@ -19,22 +19,19 @@ const useService = () => {
     body?: Body
   ) => instance.patch<Response>(url, body);
 
-  const get = <Response = unknown,>(url: string) => instance.get<Response>(url);
+  const get = <Response = unknown>(url: string) => instance.get<Response>(url);
 
   const del = <Body = Record<string, unknown>, Response = unknown>(
     url: string,
     body?: Body
-  ) =>
-    instance.delete<Response>(url, {
-      data: body,
-    });
+  ) => instance.delete<Response>(url, {
+    data: body
+  });
 
   return {
     post,
     get,
     del,
-    patch,
+    patch
   };
 };
-
-export { useService };

@@ -5,14 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { PATHS } from "../../Routers/paths";
 import { useLoginService } from "@/Services/loginService";
 
-interface LoginResponse {
-  id: string;
-  email: string;
-  nome: string;
-  foto: string;
-  token: string;
-}
-
 const Login = () => {
   const { loginService } = useLoginService();
   const navigate = useNavigate();
@@ -24,8 +16,8 @@ const Login = () => {
       const { email, password: senha} = formData;
       try {
         const response = await loginService({ email, senha });
-        console.log("Responde: ",response)
         const { token } = response.data;
+        sessionStorage.removeItem('token');
         sessionStorage.setItem('token', token);
         navigate(PATHS.contato);
       } catch (error) {

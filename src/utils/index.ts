@@ -2,10 +2,11 @@ import axios from "axios";
 
 export const useService = () => {
   const instance = axios.create();
+  const token = sessionStorage.getItem("token");
 
   instance.interceptors.request.use((config) => {
     config.headers["Content-Type"] = "application/json";
-    config.headers["Authorization"] = sessionStorage.getItem("@token") ?? "";
+    config.headers["Authorization"] = token;
     return config;
   });
 

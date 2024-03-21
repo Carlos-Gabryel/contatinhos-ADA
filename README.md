@@ -30,4 +30,3 @@ Contatinhos é um projeto do módulo 6 da Formação de Front-ed da Ada Tech. Um
 - Juliana Mesquita
 - Rodrigo Constantino
 - Vincius
-
